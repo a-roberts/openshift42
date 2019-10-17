@@ -35,7 +35,7 @@ even with a manually enhanced ClusterRole.
 
 `oc apply -f https://github.com/knative/eventing-contrib/releases/download/v0.8.0/github.yaml`
 
-- [ ] **Istio 1.1.7** still (installed directly?). Maybe not, installed through Maistra Operator?
+- [x] **Istio 1.1.7** still (installed directly?).
 
 Eventually something like this (quoting Dan Cleyrat) as a method:
 
@@ -52,8 +52,7 @@ On an OpenShift 4.2 cluster with one master and three workers (my cluster died a
 
 Success criteria:
 
-1. The applies
-
+1. 
 `oc apply -f https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-tekton-dashboard.yaml --validate=false`
 
 and
