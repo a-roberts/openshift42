@@ -2,7 +2,7 @@
 
 ## Background
 
-Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenShift 4.2, ideally with all dependencies installed through operators that are readily available.
+Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenShift 4.2, ideally with all dependencies installed through operators that are readily available. Zoom to the bottom of this for issues.
 
 ## Versions
 
@@ -72,3 +72,9 @@ must work
 - Step 3: install operators (see *versions*) above
 - Step 4: apply above yaml
 - Step 5: access created Tekton Dashboard route and test
+
+## Issues
+
+- 0.8.1 latest code for Knative Serving gives an RBAC error (cloned and applied from a tag)
+- Our yaml still references tekton-pipelines but the Tekton operator installs into openshift-pipelines, so it's time to apply a big ol' sed *or* change all of our references to be `openshift-pipelines`. I'll do a big ol' sed for now
+
