@@ -8,7 +8,7 @@ Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenS
 
 - [x] Tekton 0.7 via the Tekton operator
 - [x] Knative Eventing 0.8 via the Knative Eventing Operator
-- [ ] Knative Eventing-Contrib 0.8 installed directly: https://github.com/knative/eventing-contrib/releases/download/v0.8.0/github.yaml
+- [x] Knative Eventing-Contrib 0.8 installed directly: https://github.com/knative/eventing-contrib/releases/download/v0.8.0/github.yaml
 
 ```
 adams-mbp:example-pipelines aroberts$ k logs github-controller-manager-0 -n knative-sources
@@ -18,7 +18,7 @@ adams-mbp:example-pipelines aroberts$ k logs github-controller-manager-0 -n knat
 ```
 won't come up just yet, see the next step
 
-- [ ] Knative Serving 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator. https://github.com/openshift-knative/knative-serving-operator/tree/openshift-knative/v0.8.1-1.1.0-05 for now?
+- [x] Knative Serving 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator. https://github.com/openshift-knative/knative-serving-operator/tree/openshift-knative/v0.8.1-1.1.0-05 for now?
 
 This repo's obsolete, 0.9 will be at https://github.com/knative/serving-operator so may as well test too
 
@@ -39,10 +39,14 @@ On an OpenShift 4.2 cluster with one master and three workers (my cluster died a
 Success criteria:
 
 1. The applies
+
 `oc apply -f https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-tekton-dashboard.yaml --validate=false`
+
 and
 
 `oc apply -f https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-webhooks-extension.yaml`
+
+must work
 
 2. Access the Tekton Dashboard via its Route
 3. Test the Tekton Dashboard's main functions
