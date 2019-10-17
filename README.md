@@ -29,7 +29,7 @@ Unfortunately the pod gets stuck in CrashLoopBackOff.
 ```
 even with a manually enhanced ClusterRole.
 
-Pods come up great with the official Knative Serverless 1.0.0 operator so let's try that for now.
+**Pods come up great with the official Knative Serverless 1.0.0 operator so let's try that for now.**
 
 - [x] **Knative Eventing-Contrib** 0.8 installed directly: 
 
