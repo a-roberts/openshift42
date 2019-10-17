@@ -8,16 +8,6 @@ Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenS
 
 - [x] Tekton 0.7 via the Tekton operator
 - [x] Knative Eventing 0.8 via the Knative Eventing Operator
-- [x] Knative Eventing-Contrib 0.8 installed directly: https://github.com/knative/eventing-contrib/releases/download/v0.8.0/github.yaml
-
-```
-adams-mbp:example-pipelines aroberts$ k logs github-controller-manager-0 -n knative-sources
-2019/10/17 14:42:53 Registering Components.
-2019/10/17 14:42:53 Adding the GitHub Source controller.
-2019/10/17 14:42:53 no matches for kind "Service" in version "serving.knative.dev/v1beta1"
-```
-won't come up just yet, see the next step
-
 - [x] Knative Serving 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator. https://github.com/openshift-knative/knative-serving-operator/tree/openshift-knative/v0.8.1-1.1.0-05 for now?
 
 This repo's obsolete, 0.9 will be at https://github.com/knative/serving-operator so may as well test too
@@ -29,8 +19,25 @@ git checkout openshift-knative/v0.8.1-1.1.0-05
 kubectl apply -f deploy/crds/serving_v1alpha1_knativeserving_crd.yaml
 kubectl apply -f deploy/
 ```
+- [x] Knative Eventing-Contrib 0.8 installed directly: https://github.com/knative/eventing-contrib/releases/download/v0.8.0/github.yaml
+
+```
+adams-mbp:example-pipelines aroberts$ k logs github-controller-manager-0 -n knative-sources
+2019/10/17 14:42:53 Registering Components.
+2019/10/17 14:42:53 Adding the GitHub Source controller.
+2019/10/17 14:42:53 no matches for kind "Service" in version "serving.knative.dev/v1beta1"
+```
 
 - [ ] Istio 1.1.7 still (installed directly?). Maybe not, installed through Maistra Operator?
+
+Eventually something like this (quoting Dan Cleyrat) as a method:
+
+```
+install service mesh via OLM
+it has deps on other operators, need to install those deps, because the dep resolution in OLM isn't ideal - working something out for the entirety of the kab stack, will socialize it once i'm satisfied
+```
+
+For now, I'll use the existing install script for our Tekton Webhooks Extension pointing to 1.1.16.
 
 ## Testing
 
