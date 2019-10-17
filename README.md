@@ -8,6 +8,8 @@ Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenS
 
 - [x] **Tekton Pipelines** 0.7 via the Tekton operator
 - [x] **Knative Eventing** 0.8 via the Knative Eventing Operator
+
+
 - [x] **Knative Serving** 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator. https://github.com/openshift-knative/knative-serving-operator/tree/openshift-knative/v0.8.1-1.1.0-05 for now?
 
 This repo's obsolete, 0.9 will be at https://github.com/knative/serving-operator so may as well test too
@@ -38,7 +40,7 @@ Add:
   verbs:  ["get", "list", "update", "delete", "create", "patch"]
   ```
   
-fixes nothing, hmm.
+fixes nothing, hmm. Trying the official Knative Serverless 1.0.0 operator.
 
 - [x] **Knative Eventing-Contrib** 0.8 installed directly: 
 
