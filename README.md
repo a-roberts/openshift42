@@ -10,7 +10,7 @@ Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenS
 - [x] **Knative Eventing** 0.8 via the Knative Eventing Operator
 
 
-- [x] **Knative Serving** 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator. 
+- [ ] **Knative Serving** 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator. 
 
 Tried https://github.com/openshift-knative/knative-serving-operator/tree/openshift-knative/v0.8.1-1.1.0-05, details as follow.
 
@@ -29,7 +29,7 @@ Unfortunately the pod gets stuck in CrashLoopBackOff.
 ```
 even with a manually enhanced ClusterRole.
 
-**Pods come up great with the official Knative Serverless 1.0.0 operator so let's try that for now.**
+**Pods come up great with the official Knative Serverless 1.0.0 operator but I hear this won't work - so here's the problem.**
 
 - [x] **Knative Eventing-Contrib** 0.8 installed directly: 
 
