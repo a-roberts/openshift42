@@ -20,10 +20,12 @@ won't come up just yet, see the next step
 
 - [ ] Knative Serving 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator. https://github.com/openshift-knative/knative-serving-operator/tree/openshift-knative/v0.8.1-1.1.0-05 for now?
 
+This repo's obsolete, 0.9 will be at https://github.com/knative/serving-operator so may as well test too
+
 ```
 git clone https://github.com/openshift-knative/knative-serving-operator.git
 cd knative-serving-operator/
-git checkout v0.8.1-1.1.0-05
+git checkout openshift-knative/v0.8.1-1.1.0-05
 kubectl apply -f deploy/crds/serving_v1alpha1_knativeserving_crd.yaml
 kubectl apply -f deploy/
 ```
