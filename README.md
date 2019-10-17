@@ -6,10 +6,12 @@ Musings around getting the Tekton Dashboard and Webhooks Extension available on 
 
 ## Versions
 
-Versions we care for:
-- Tekton Pipelines: 0.7.0
-- Knative components: likely 0.7.1, 0.8.1 or 0.9.0 even
-- Istio: try to stick with 1.1.7
+The best offer we can currently make for the next Kabanero release is therefore:
+- Tekton 0.7 via the Tekton operator
+- Knative Eventing 0.8 via the Knative Serving Operator
+- Knative Eventing-Contrib installed directly
+- Knative Serving 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator.
+- Istio at 1.1.7?
 
 ## Testing
 
