@@ -126,3 +126,11 @@ error: EOF
 ```
 
 This was with one master/worker (16 GB ram). I'll try with one master and three workers.
+
+```
+[root@smarter-inf ~]# ./oc login
+Server [https://localhost:8443]: admin
+error: dial tcp: lookup admin on 10.16.0.5:53: no such host - verify you have provided the correct host and port and that the server is currently running.
+```
+
+boo...
