@@ -6,12 +6,11 @@ Musings around getting the Tekton Dashboard and Webhooks Extension available on 
 
 ## Versions
 
-The best offer we can currently make for the next Kabanero release is therefore:
-- Tekton 0.7 via the Tekton operator
-- Knative Eventing 0.8 via the Knative Eventing Operator
+- [x] Tekton 0.7 via the Tekton operator
+- [x] Knative Eventing 0.8 via the Knative Eventing Operator
 - Knative Eventing-Contrib 0.8 installed directly
-- Knative Serving 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator
-- Istio 1.1.7 still (installed directly?)
+- Knative Serving 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator. https://github.com/openshift-knative/knative-serving-operator/tree/openshift-knative/v0.8.1-1.1.0-05 for now?
+- Istio 1.1.7 still (installed directly?). Maybe not, installed through Maistra Operator?
 
 ## Testing
 
