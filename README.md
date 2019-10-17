@@ -19,6 +19,27 @@ git checkout openshift-knative/v0.8.1-1.1.0-05
 kubectl apply -f deploy/crds/serving_v1alpha1_knativeserving_crd.yaml
 kubectl apply -f deploy/
 ```
+
+Unfortunately the pod gets stuck in CrashLoopBackOff.
+
+```
+{"level":"error","ts":1571326555.584742,"logger":"cmd","msg":"","error":"routes.route.openshift.io is forbidden: User \"system:serviceaccount:openshift-operators:knative-serving-operator\" cannot list resource \"routes\" in API group \"route.openshift.io\" at the cluster scope","stacktrace":"github.com/openshift-knative/knative-serving-operator/vendor/github.com/go-logr/zapr.(*zapLogger).Error\n\tknative-serving-operator/vendor/github.com/go-logr/zapr/zapr.go:128\nmain.main\n\tknative-serving-operator/cmd/manager/main.go:111\nruntime.main\n\t/home/jim/local/go/src/runtime/proc.go:200"}
+```
+
+`knative-serving-operator` ServiceAccount in namespace `openshift-operators` uses the ClusterRole `knative-serving-operator`, so let's edit that:
+
+`oc edit knative-serving-operator`
+
+Add:
+
+```
+- apiGroups: ["route.openshift.io"]
+  resources: ["routes"]
+  verbs:  ["get", "list", "update", "delete", "create", "patch"]
+  ```
+  
+fixes nothing, hmm.
+
 - [x] **Knative Eventing-Contrib** 0.8 installed directly: 
 
 `oc apply -f https://github.com/knative/eventing-contrib/releases/download/v0.8.0/github.yaml`
