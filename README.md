@@ -8,9 +8,9 @@ Musings around getting the Tekton Dashboard and Webhooks Extension available on 
 
 - [x] Tekton 0.7 via the Tekton operator
 - [x] Knative Eventing 0.8 via the Knative Eventing Operator
-- Knative Eventing-Contrib 0.8 installed directly
-- Knative Serving 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator. https://github.com/openshift-knative/knative-serving-operator/tree/openshift-knative/v0.8.1-1.1.0-05 for now?
-- Istio 1.1.7 still (installed directly?). Maybe not, installed through Maistra Operator?
+- [ ] Knative Eventing-Contrib 0.8 installed directly: https://github.com/knative/eventing-contrib/releases/download/v0.8.0/github.yaml?
+- [ ] Knative Serving 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator. https://github.com/openshift-knative/knative-serving-operator/tree/openshift-knative/v0.8.1-1.1.0-05 for now?
+- [ ] Istio 1.1.7 still (installed directly?). Maybe not, installed through Maistra Operator?
 
 ## Testing
 
