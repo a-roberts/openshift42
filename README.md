@@ -124,3 +124,5 @@ Unable to connect to the server:
 adams-mbp:tekton-validate-github-event aroberts$ oc login
 error: EOF
 ```
+
+This was with one master/worker (16 GB ram). I'll try with one master and three workers.
