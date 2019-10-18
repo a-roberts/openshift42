@@ -22,6 +22,13 @@ openshift-operator-lifecycle-manager                    service/serverless-opera
 ```
 and it's available as an installed operator in OLM's UI.
 
+```
+adams-mbp:serverless-operator aroberts$ k get pods --all-namespaces | grep serving
+openshift-service-ca                                    service-serving-cert-signer-84694bdffc-8xhd5                      1/1       Running            0          20h
+```
+
+still on the hunt for my Knative serving pods.
+
 - [x] **Knative Eventing-Contrib** 0.8 installed directly: 
 
 `oc apply -f https://github.com/knative/eventing-contrib/releases/download/v0.8.0/github.yaml`
