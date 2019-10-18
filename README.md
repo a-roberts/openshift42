@@ -48,6 +48,7 @@ Then you install the operator through the UI.
 - Step 6: access created Tekton Dashboard route and test:
 
 `oc apply -f https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-tekton-dashboard.yaml --validate=false`
+
 `oc apply -f https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-webhooks-extension.yaml`
 
 ## A note on namespaces and the ServiceMesh
