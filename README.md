@@ -9,77 +9,15 @@ Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenS
 - [x] **Tekton Pipelines** 0.7 via the Tekton operator
 - [x] **Knative Eventing** 0.8 via the Knative Eventing Operator
 
+- [ ] **Knative Serving** 0.8.1 installed by the Knative Serverless Operator 1.1.0?
 
-- [ ] **Knative Serving** 0.8.1 installed by the Knative Serverless Operator 1.1.0
+Todo confirm this is good!
 
-https://github.com/openshift-knative/serverless-operator/blob/master/olm-catalog/serverless-operator/serverless-operator.v1.1.0.clusterserviceversion.yaml
+Follow https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html/serverless/installing-openshift-serverless which involves
 
-Todo figure it out, reading https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html/serverless/installing-openshift-serverless
-
-```
-adams-mbp:serverless-operator aroberts$ k get all --all-namespaces | grep serverless
-openshift-operator-lifecycle-manager                    pod/serverless-operator-74m5c                                         1/1       Running            0          9m28s
-
-openshift-operator-lifecycle-manager                    service/serverless-operator                    ClusterIP      172.30.90.210    <none>                                 50051/TCP                                                                                                                                    9m29s
-```
-and it's available as an installed operator in OLM's UI.
-
-```
-adams-mbp:serverless-operator aroberts$ k get pods --all-namespaces | grep serving
-openshift-service-ca                                    service-serving-cert-signer-84694bdffc-8xhd5                      1/1       Running            0          20h
-```
-
-still on the hunt for my Knative serving pods.
-
-```
-status:
-  certsLastUpdated: null
-  certsRotateAt: null
-  conditions:
-  - lastTransitionTime: 2019-10-18T09:05:36Z
-    lastUpdateTime: 2019-10-18T09:05:36Z
-    message: requirements not yet checked
-    phase: Pending
-    reason: RequirementsUnknown
-  - lastTransitionTime: 2019-10-18T09:05:36Z
-    lastUpdateTime: 2019-10-18T09:05:36Z
-    message: one or more requirements couldn't be found
-    phase: Pending
-    reason: RequirementsNotMet
-  lastTransitionTime: 2019-10-18T09:05:36Z
-  lastUpdateTime: 2019-10-18T09:05:36Z
-  message: one or more requirements couldn't be found
-  phase: Pending
-  reason: RequirementsNotMet
-  requirementStatus:
-  - group: operators.coreos.com
-    kind: ClusterServiceVersion
-    message: CSV missing minimum kube version specification
-    name: serverless-operator.v1.1.0
-    status: NotPresent
-    version: v1alpha1
-  - group: apiextensions.k8s.io
-    kind: CustomResourceDefinition
-    message: CRD is present and Established condition is true
-    name: knativeservings.serving.knative.dev
-    status: Present
-    uuid: a1807765-f0ed-11e9-b98b-00000a100681
-    version: v1beta1
-  - group: ""
-    kind: ServiceAccount
-    message: Service account does not exist
-    name: knative-serving-operator
-    status: NotPresent
-    version: v1
-  - group: ""
-    kind: ServiceAccount
-    message: Service account does not exist
-    name: knative-openshift-ingress
-    status: NotPresent
-    version: v1
-```
-
-when I do `k get clusterserviceversion serverless-operator.v1.1.0  -o yaml` (and a describe shows being in a `Pending` state, this is also seen in the Operator UI).
+1) install the RedHat provided 1.0.1 Service Mesh operator through OLM
+2) create the `istio-system` namespace and apply sample yaml which will mention `servicemeshcontrolplane.maistra.io/basic-install created`
+3) indeed watch the pods coming up as you will hit an ErrImagePull problem for a while. After five minutes, all is well
 
 - [x] **Knative Eventing-Contrib** 0.8 installed directly: 
 
@@ -98,7 +36,13 @@ For now, I'll use the existing install script for our Tekton Webhooks Extension 
 
 ## Testing
 
-On an OpenShift 4.2 cluster with one master and three workers (my cluster died after installing two operators with just one worker)...
+1) On an OpenShift 4.2 cluster with one master and three workers (my cluster died after installing two operators with just one worker)...
+2) With one msater and three workers, it died again after installing ServiceMesh, the Serverless 1.1.0 operator, eventing!
+
+```
+adams-mbp:serverless-operator aroberts$ oc login
+error: EOF
+```
 
 Success criteria:
 
@@ -125,6 +69,10 @@ must work
 
 ## Issues
 
-- 0.8.1 latest code for Knative Serving gives an RBAC error (cloned and applied from a tag)
-- Our yaml still references tekton-pipelines but the Tekton operator installs into openshift-pipelines, so it's time to apply a big ol' sed *or* change all of our references to be `openshift-pipelines`. I'll do a big ol' sed for now
+- Todo get the Serverless 1.1.0 operator working
+- Ran out of memory I think even with three worker nodes! 
+
+```
+An OpenShift cluster with 10 CPUs and 40 GB memory is the minimum requirement for getting started with your first serverless application. This usually means you must scale up one of the default MachineSets by two additional machines.
+```
 
