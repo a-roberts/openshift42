@@ -49,3 +49,9 @@ Then you install the operator through the UI.
 
 `oc apply -f https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-tekton-dashboard.yaml --validate=false`
 `oc apply -f https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-webhooks-extension.yaml`
+
+## A note on namespaces and the ServiceMesh
+
+See https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html/serverless/installing-openshift-serverless#installing-service-mesh-member-roll_installing-openshift-serverless.
+
+Ensure any namespace that creates a ksvc is in that ServiceMeshMemberRoll. Should be made easier with Serverless 1.2.0.
