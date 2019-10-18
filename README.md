@@ -14,29 +14,13 @@ Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenS
 
 https://github.com/openshift-knative/serverless-operator/blob/master/olm-catalog/serverless-operator/serverless-operator.v1.1.0.clusterserviceversion.yaml
 
-I think this 1.1.0 operator does nothing, I'm in the `openshift-operators` namespace - changed placeholder to be `openshift-operators` then did an `oc apply` of https://raw.githubusercontent.com/openshift-knative/serverless-operator/master/olm-catalog/serverless-operator/serverless-operator.v1.1.0.clusterserviceversion.yaml
-
 ```
-adams-mbp:serverless-operator aroberts$ oc apply -f serverless-operator.v1.1.0.clusterserviceversion.yaml 
-clusterserviceversion.operators.coreos.com/serverless-operator.v1.1.0 created
+adams-mbp:serverless-operator aroberts$ k get all --all-namespaces | grep serverless
+openshift-operator-lifecycle-manager                    pod/serverless-operator-74m5c                                         1/1       Running            0          9m28s
 
-adams-mbp:serverless-operator aroberts$ k get all -n openshift-operators
-NAME                                                READY     STATUS    RESTARTS   AGE
-pod/knative-eventing-operator-56b75948c5-x7sll      1/1       Running   0          19h
-pod/openshift-pipelines-operator-75d79846c5-tdvs5   1/1       Running   0          19h
-
-NAME                                           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
-service/knative-eventing-operator              ClusterIP   172.30.254.4     <none>        8383/TCP            19h
-service/openshift-pipelines-operator-metrics   ClusterIP   172.30.255.229   <none>        8383/TCP,8686/TCP   19h
-
-NAME                                           READY     UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/knative-eventing-operator      1/1       1            1           19h
-deployment.apps/openshift-pipelines-operator   1/1       1            1           19h
-
-NAME                                                      DESIRED   CURRENT   READY     AGE
-replicaset.apps/knative-eventing-operator-56b75948c5      1         1         1         19h
-replicaset.apps/openshift-pipelines-operator-75d79846c5   1         1         1         19h
+openshift-operator-lifecycle-manager                    service/serverless-operator                    ClusterIP      172.30.90.210    <none>                                 50051/TCP                                                                                                                                    9m29s
 ```
+and it's available as an installed operator in OLM's UI.
 
 - [x] **Knative Eventing-Contrib** 0.8 installed directly: 
 
