@@ -22,6 +22,8 @@ Follow https://access.redhat.com/documentation/en-us/openshift_container_platfor
 3) indeed watch the pods coming up as you will hit an ErrImagePull problem for a while. After five minutes, all is well
 4) when installing serverless 1.1.0 there's a mistake in the readme, you want:
 
+`./hack/catalog.sh | kubectl apply -n openshift-marketplace -f -`
+
 ```
 OPERATOR_NS=$(kubectl get og --all-namespaces | grep global-operators | awk '{print $1}')
 
@@ -38,11 +40,10 @@ spec:
   name: serverless-operator
   channel: techpreview
 EOF
-in a lil script I'm execing (edited) 
-actually... it's the other bit of the readme isn't it
+
 ./hack/catalog.sh | kubectl apply -n openshift-marketplace -f -
 ```
-
+Then you install the operator through the UI.
 
 ## Testing
 
