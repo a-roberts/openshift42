@@ -7,7 +7,7 @@ Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenS
 ## Versions
 
 - [x] **Tekton Pipelines** 0.7 via the Tekton operator (RedHat provided, community)
-- [ ] **ServiceMesh** 1.0.1 via the Service Mesh operator (RedHat provided)
+- [x] **ServiceMesh** 1.0.1 via the Service Mesh operator (RedHat provided)
 - [x] **Knative Eventing** 0.8 via the Knative Eventing Operator (community)
 - [x] **Knative Eventing-Contrib** 0.8 installed directly: 
 `oc apply -f https://github.com/knative/eventing-contrib/releases/download/v0.8.0/github.yaml`
@@ -20,12 +20,34 @@ Follow https://access.redhat.com/documentation/en-us/openshift_container_platfor
 1) install the RedHat provided 1.0.1 Service Mesh operator through OLM
 2) create the `istio-system` namespace and apply sample yaml which will mention `servicemeshcontrolplane.maistra.io/basic-install created`
 3) indeed watch the pods coming up as you will hit an ErrImagePull problem for a while. After five minutes, all is well
+4) when installing serverless 1.1.0 there's a mistake in the readme, you want:
+
+```
+OPERATOR_NS=$(kubectl get og --all-namespaces | grep global-operators | awk '{print $1}')
+
+cat <<-EOF | kubectl apply -f -
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: serverless-operator-sub
+  generateName: serverless-operator-
+  namespace: $OPERATOR_NS
+spec:
+  source: serverless-operator
+  sourceNamespace: openshift-marketplace
+  name: serverless-operator
+  channel: techpreview
+EOF
+in a lil script I'm execing (edited) 
+actually... it's the other bit of the readme isn't it
+./hack/catalog.sh | kubectl apply -n openshift-marketplace -f -
+```
 
 
 ## Testing
 
 1) On an OpenShift 4.2 cluster with one master and three workers (my cluster died after installing two operators with just one worker)...
-2) With one msater and three workers, it died again after installing ServiceMesh, the Serverless 1.1.0 operator, eventing!
+2) With one master and three workers, it died again after installing ServiceMesh, the Serverless 1.1.0 operator, eventing!
 
 ```
 adams-mbp:serverless-operator aroberts$ oc login
