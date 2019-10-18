@@ -10,26 +10,33 @@ Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenS
 - [x] **Knative Eventing** 0.8 via the Knative Eventing Operator
 
 
-- [ ] **Knative Serving** 0.8.1 installed by a future/soon version of the Serverless operator, or by bypassing the Serverless Operator. 
+- [ ] **Knative Serving** 0.8.1 installed by the Knative Serverless Operator 1.1.0
 
-Tried https://github.com/openshift-knative/knative-serving-operator/tree/openshift-knative/v0.8.1-1.1.0-05, details as follow.
+https://github.com/openshift-knative/serverless-operator/blob/master/olm-catalog/serverless-operator/serverless-operator.v1.1.0.clusterserviceversion.yaml
 
-```
-git clone https://github.com/openshift-knative/knative-serving-operator.git
-cd knative-serving-operator/
-git checkout openshift-knative/v0.8.1-1.1.0-05
-kubectl apply -f deploy/crds/serving_v1alpha1_knativeserving_crd.yaml
-kubectl apply -f deploy/
-```
-
-Unfortunately the pod gets stuck in CrashLoopBackOff.
+I think this 1.1.0 operator does nothing, I'm in the `openshift-operators` namespace - changed placeholder to be `openshift-operators` then did an `oc apply` of https://raw.githubusercontent.com/openshift-knative/serverless-operator/master/olm-catalog/serverless-operator/serverless-operator.v1.1.0.clusterserviceversion.yaml
 
 ```
-{"level":"error","ts":1571326555.584742,"logger":"cmd","msg":"","error":"routes.route.openshift.io is forbidden: User \"system:serviceaccount:openshift-operators:knative-serving-operator\" cannot list resource \"routes\" in API group \"route.openshift.io\" at the cluster scope","stacktrace":"github.com/openshift-knative/knative-serving-operator/vendor/github.com/go-logr/zapr.(*zapLogger).Error\n\tknative-serving-operator/vendor/github.com/go-logr/zapr/zapr.go:128\nmain.main\n\tknative-serving-operator/cmd/manager/main.go:111\nruntime.main\n\t/home/jim/local/go/src/runtime/proc.go:200"}
-```
-even with a manually enhanced ClusterRole.
+adams-mbp:serverless-operator aroberts$ oc apply -f serverless-operator.v1.1.0.clusterserviceversion.yaml 
+clusterserviceversion.operators.coreos.com/serverless-operator.v1.1.0 created
 
-**Pods come up great with the official Knative Serverless 1.0.0 operator but I hear this won't work - so here's the problem.**
+adams-mbp:serverless-operator aroberts$ k get all -n openshift-operators
+NAME                                                READY     STATUS    RESTARTS   AGE
+pod/knative-eventing-operator-56b75948c5-x7sll      1/1       Running   0          19h
+pod/openshift-pipelines-operator-75d79846c5-tdvs5   1/1       Running   0          19h
+
+NAME                                           TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)             AGE
+service/knative-eventing-operator              ClusterIP   172.30.254.4     <none>        8383/TCP            19h
+service/openshift-pipelines-operator-metrics   ClusterIP   172.30.255.229   <none>        8383/TCP,8686/TCP   19h
+
+NAME                                           READY     UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/knative-eventing-operator      1/1       1            1           19h
+deployment.apps/openshift-pipelines-operator   1/1       1            1           19h
+
+NAME                                                      DESIRED   CURRENT   READY     AGE
+replicaset.apps/knative-eventing-operator-56b75948c5      1         1         1         19h
+replicaset.apps/openshift-pipelines-operator-75d79846c5   1         1         1         19h
+```
 
 - [x] **Knative Eventing-Contrib** 0.8 installed directly: 
 
