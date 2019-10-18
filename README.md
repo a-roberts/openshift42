@@ -14,6 +14,8 @@ Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenS
 
 https://github.com/openshift-knative/serverless-operator/blob/master/olm-catalog/serverless-operator/serverless-operator.v1.1.0.clusterserviceversion.yaml
 
+Todo figure it out
+
 ```
 adams-mbp:serverless-operator aroberts$ k get all --all-namespaces | grep serverless
 openshift-operator-lifecycle-manager                    pod/serverless-operator-74m5c                                         1/1       Running            0          9m28s
@@ -28,6 +30,56 @@ openshift-service-ca                                    service-serving-cert-sig
 ```
 
 still on the hunt for my Knative serving pods.
+
+```
+status:
+  certsLastUpdated: null
+  certsRotateAt: null
+  conditions:
+  - lastTransitionTime: 2019-10-18T09:05:36Z
+    lastUpdateTime: 2019-10-18T09:05:36Z
+    message: requirements not yet checked
+    phase: Pending
+    reason: RequirementsUnknown
+  - lastTransitionTime: 2019-10-18T09:05:36Z
+    lastUpdateTime: 2019-10-18T09:05:36Z
+    message: one or more requirements couldn't be found
+    phase: Pending
+    reason: RequirementsNotMet
+  lastTransitionTime: 2019-10-18T09:05:36Z
+  lastUpdateTime: 2019-10-18T09:05:36Z
+  message: one or more requirements couldn't be found
+  phase: Pending
+  reason: RequirementsNotMet
+  requirementStatus:
+  - group: operators.coreos.com
+    kind: ClusterServiceVersion
+    message: CSV missing minimum kube version specification
+    name: serverless-operator.v1.1.0
+    status: NotPresent
+    version: v1alpha1
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+    message: CRD is present and Established condition is true
+    name: knativeservings.serving.knative.dev
+    status: Present
+    uuid: a1807765-f0ed-11e9-b98b-00000a100681
+    version: v1beta1
+  - group: ""
+    kind: ServiceAccount
+    message: Service account does not exist
+    name: knative-serving-operator
+    status: NotPresent
+    version: v1
+  - group: ""
+    kind: ServiceAccount
+    message: Service account does not exist
+    name: knative-openshift-ingress
+    status: NotPresent
+    version: v1
+```
+
+when I do `k get clusterserviceversion serverless-operator.v1.1.0  -o yaml` (and a describe shows being in a `Pending` state, this is also seen in the Operator UI).
 
 - [x] **Knative Eventing-Contrib** 0.8 installed directly: 
 
