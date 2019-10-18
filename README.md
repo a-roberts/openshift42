@@ -14,7 +14,7 @@ Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenS
 
 https://github.com/openshift-knative/serverless-operator/blob/master/olm-catalog/serverless-operator/serverless-operator.v1.1.0.clusterserviceversion.yaml
 
-Todo figure it out
+Todo figure it out, reading https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html/serverless/installing-openshift-serverless
 
 ```
 adams-mbp:serverless-operator aroberts$ k get all --all-namespaces | grep serverless
