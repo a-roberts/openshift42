@@ -18,9 +18,9 @@ echo "Install the Knative Eventing 0.8 operator"
 
 read -p "Press enter to continue - I've installed the Knative Eventing operator"
 
-echo "Install the Knative Eventing Contrib GitHubSource CRD with oc apply -f https://github.com/knative/eventing-contrib/releases/download/v0.8.0/github.yaml"
+echo "Installing the Knative Eventing Contrib GitHubSource CRD"
 
-read -p "Press enter to continue - I've installed the GitHubSource CRD"
+oc apply -f https://github.com/knative/eventing-contrib/releases/download/v0.8.0/github.yaml
 
 echo "Installing the Serverless Operator 1.1.0 from GitHub: https://github.com/openshift-knative/serverless-operator"
 
