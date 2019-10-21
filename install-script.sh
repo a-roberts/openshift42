@@ -52,6 +52,8 @@ sleep 5
 
 echo "Installing Knative Serving object"
 
+cd ../
+
 oc apply -f Serving.yaml
 
 echo "Installing Tekton Dashboard"
