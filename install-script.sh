@@ -13,9 +13,9 @@ oc apply -f MaistraFile.yaml
 sleep 5
 oc apply -f MemberRole.yaml
 
-echo "Install the Tekton Pipelines operator before you continue"
+echo "Install the Tekton Pipelines operator AND an instance before you continue"
 
-read -p "Press enter to continue - I've installed the Tekton Pipelines operator"
+read -p "Press enter to continue - I've installed the Tekton Pipelines operator AND an instance of Tekton Pipelines"
 
 echo "Install the Knative Eventing 0.8 operator"
 
@@ -54,18 +54,16 @@ echo "Installing Knative Serving object"
 
 oc apply -f Serving.yaml
 
-echo "Installing Tekton Dashboard - todo through an operator?"
+echo "Installing Tekton Dashboard"
 
 curl -L https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-tekton-dashboard.yaml \
   | sed 's/namespace: tekton-pipelines/namespace: openshift-pipelines/' \
   | sed 's/value: tekton-pipelines/value: openshift-pipelines/' \
   | oc apply --validate=false --filename -
 
-# Dashboard #
 curl -L https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-webhooks-extension.yaml \
   | sed 's/namespace: tekton-pipelines/namespace: openshift-pipelines/' \
   | sed 's/default: tekton-pipelines/default: openshift-pipelines/' \
   | oc apply --filename -
-
 
 echo "Done!"
