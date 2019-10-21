@@ -8,7 +8,7 @@ Notes for getting the Tekton Dashboard and Webhooks Extension available on OpenS
 
 https://docs.openshift.com/container-platform/4.2/nodes/nodes/nodes-nodes-working.html#nodes-nodes-working-master-schedulable_nodes-nodes-working
 
-Fyre's OpenShift ember makes the master nodes schedulable. After installing everything and waiting a while, your cluster will become completely unusable unless you make the master nodes *only* master nodes and *not* masters and workers too.
+Fyre's OpenShift ember makes the master nodes schedulable. After installing everything and waiting a while, your cluster will become completely unusable unless you make them not so following the above.
 
 ## Versions
 
