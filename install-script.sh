@@ -69,3 +69,13 @@ curl -L https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift
   | oc apply --filename -
 
 echo "Done!"
+
+echo "Post install notes you should be aware of"
+
+echo "webhooks-route not needed (mentioned in our instructions so far for webhooks extension)"
+echo "configmap already set (mentioned in our instructions so far for webhooks extension)"
+echo "no need for those oc router commands (mentioned in our instructions so far for webhooks extension)"
+echo "member roll super important - ensure namespaces you want serverless stuff to be in, are mentioned in the roll"
+echo "describe your virtualservices if your ksvc isn't ready"
+echo "networking pod in istio-system for debugging"
+echo "enjoy"
