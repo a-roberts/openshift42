@@ -10,6 +10,8 @@ read -p "Press enter to continue - I've installed the ServiceMesh operator"
 
 oc new-project istio-system
 oc apply -f MaistraFile.yaml
+sleep 5
+oc apply -f MemberRole.yaml
 
 echo "Install the Tekton Pipelines operator before you continue"
 
@@ -46,10 +48,24 @@ spec:
   channel: techpreview
 EOF
 
+sleep 5
+
+echo "Installing Knative Serving object"
+
+oc apply -f Serving.yaml
+
 echo "Installing Tekton Dashboard - todo through an operator?"
 
-oc apply -f https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-tekton-dashboard.yaml --validate=false
+curl -L https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-tekton-dashboard.yaml \
+  | sed 's/namespace: tekton-pipelines/namespace: openshift-pipelines/' \
+  | sed 's/value: tekton-pipelines/value: openshift-pipelines/' \
+  | oc apply --validate=false --filename -
 
-oc apply -f https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-webhooks-extension.yaml
+# Dashboard #
+curl -L https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-webhooks-extension.yaml \
+  | sed 's/namespace: tekton-pipelines/namespace: openshift-pipelines/' \
+  | sed 's/default: tekton-pipelines/default: openshift-pipelines/' \
+  | oc apply --filename -
+
 
 echo "Done!"
