@@ -5,5 +5,6 @@ metadata:
   namespace: istio-system
 spec:
   members:
+  # Add anywhere else you want serverless goodies to work
   - knative-serving
-  - mynamespace
+  - openshift-pipelines
