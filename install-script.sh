@@ -8,6 +8,7 @@ echo "Install the ServiceMesh operator before you continue"
 
 read -p "Press enter to continue - I've installed the ServiceMesh operator"
 
+oc new-project istio-system
 oc apply -f MaistraFile.yaml
 
 echo "Install the Tekton Pipelines operator before you continue"
