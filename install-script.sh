@@ -43,6 +43,7 @@ curl -L https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift
 curl -L https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-webhooks-extension.yaml \
   | sed 's/namespace: tekton-pipelines/namespace: openshift-pipelines/' \
   | sed 's/default: tekton-pipelines/default: openshift-pipelines/' \
+  | sed 's/value: tekton-pipelines/value: openshift-pipelines/' \
   | oc apply --filename -
 
 echo "Done!"
