@@ -49,6 +49,7 @@ echo "Done!"
 
 echo "Post install notes you should be aware of"
 
+echo "Check INSTALLED_NAMESPACE for the webhooks extension is set to openshift-pipelines too or you will hit a configmap lookup problem when retrieving webhook info"
 echo "member roll super important - ensure namespaces you want serverless stuff to be in, are mentioned in the roll"
 echo "describe your virtualservices if your ksvc isn't ready"
 echo "networking pod in istio-system for debugging"
