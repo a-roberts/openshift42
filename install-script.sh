@@ -4,7 +4,8 @@ echo "Make sure your master nodes aren't schedulable, see https://docs.openshift
 
 echo "Now https://access.redhat.com/documentation/en-us/openshift_container_platform/4.2/html/serverless/installing-openshift-serverless"
 
-echo "Install the ServiceMesh operator before you continue"
+echo "Install* the ServiceMesh operator before you continue"
+echo "Note that when this script says install for an operator, it means create a subscription through the UI using default settings"
 
 read -p "Press enter to continue - I've installed the ServiceMesh operator"
 
@@ -47,11 +48,6 @@ curl -L https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift
   | oc apply --filename -
 
 echo "Done!"
-
 echo "Post install notes you should be aware of"
-
 echo "Check INSTALLED_NAMESPACE for the webhooks extension is set to openshift-pipelines too or you will hit a configmap lookup problem when retrieving webhook info"
-echo "member roll super important - ensure namespaces you want serverless stuff to be in, are mentioned in the roll"
-echo "describe your virtualservices if your ksvc isn't ready"
-echo "networking pod in istio-system for debugging"
 echo "enjoy"
