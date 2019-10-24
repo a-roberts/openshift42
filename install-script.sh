@@ -36,13 +36,13 @@ oc apply -f Serving.yaml
 echo "Installing Tekton Dashboard"
 
 curl -L https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-tekton-dashboard.yaml \
-  | sed 's/namespace: tekton-pipelines/namespace: openshift-pipelines/' \
-  | sed 's/value: tekton-pipelines/value: openshift-pipelines/' \
+  | sed 's/namespace: tekton-pipelines/namespace: kabanero/' \
+  | sed 's/value: tekton-pipelines/value: kabanero/' \
   | oc apply --validate=false --filename -
 
 curl -L https://github.com/tektoncd/dashboard/releases/download/v0.2.0/openshift-webhooks-extension.yaml \
-  | sed 's/namespace: tekton-pipelines/namespace: openshift-pipelines/' \
-  | sed 's/default: tekton-pipelines/default: openshift-pipelines/' \
+  | sed 's/namespace: tekton-pipelines/namespace: kabanero/' \
+  | sed 's/default: tekton-pipelines/default: kabanero/' \
   | oc apply --filename -
 
 echo "Done!"
