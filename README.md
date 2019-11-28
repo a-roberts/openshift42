@@ -36,7 +36,7 @@ Ensure any namespace that creates a ksvc is in that ServiceMeshMemberRoll. Shoul
 You'll need them! Set up dynamic provisioning, if you're an IBMer you're in luck:
 
 ```
-git clone https://github.ibm.com/dacleyra/ocp-on-fyre
+git clone https://github.ibm.com/AROBERTS/ocp-on-fyre
 cd ocp-on-fyre
 ./nfs-storage-provisioner.sh
 ```
